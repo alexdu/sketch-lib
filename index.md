@@ -14,14 +14,19 @@ title: sketch-lib @ github
 [coordsys]: coordsys.png
 [annotate]: annotate.png
 
+sketch-lib
+==========
+
 Author:  Alex Dumitrache, <alex@cimr.pub.ro>
 
 License: GPL
 
+![Basic shapes overview][overview]
+
 <a name="download"> </a>
 
 Download
---------
+========
 
 You may download the library in [zip](http://github.com/alexdu/robot-sandbox/zipball/master) format.
 
@@ -30,10 +35,7 @@ You may also clone the project with [Git](http://git-scm.com) by running:
 {% highlight sh %}
 $ git clone git://github.com/alexdu/robot-sandbox
 {% endhighlight %}
- 
 
-
-![Basic shapes overview][overview]
 
 Usage
 =====
