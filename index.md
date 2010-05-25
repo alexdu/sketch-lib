@@ -161,7 +161,7 @@ Customizing the objects
 If you want to customize the default options, or change the style 
 for a particular object, use the alternate form:
     
-    { input{lib/`*object_name*`} }
+    { input{lib/object_name} }
 
 Examples:
 
