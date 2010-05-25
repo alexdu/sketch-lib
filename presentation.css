@@ -1,0 +1,99 @@
+/* Presentation stylesheet */
+
+/* IDs */
+#main {
+  /*border: 1px solid;*/
+  min-width: 50em;
+  max-width: 70em;
+  margin: 0 auto;
+}
+#header {
+  padding: 1.5em 1em;
+}
+#header .title {
+  margin: 0;
+  padding: 0;
+}
+#footer {
+  padding: 1.5em;
+}
+#footer p {
+  margin: 0;
+  text-align: center;
+}
+/*#header {
+  border-bottom: 1px dotted;
+}*/
+
+/* backgrounds */
+#header,
+.cols-wrapper {
+  background-color: white;
+}
+/*
+#main {
+  background: #efefef url(pattern.gif);
+}*/
+
+/* classes */
+.box,
+.main-content {
+  margin: 1em;
+}
+.cols-wrapper {
+  border: 1px;
+  margin: 0 -1px;
+  /*border-style: none dotted dotted dotted;*/
+}
+.hide-left .cols-wrapper {
+  border-left: none;
+  margin-left: 0;
+}
+.hide-right .cols-wrapper {
+  border-right: none;
+  margin-right: 0;
+}
+.hide-both .cols-wrapper {
+  /*border-style: none none dotted none;*/
+  margin: 0;
+}
+.box {
+  font-size: 92%;
+  line-height: 1.18em;
+}
+#footer,
+.sidecol {
+  color: #333;
+}
+.sidecol ul {
+  padding: 0 0 0 1.5em;
+}
+
+/* dom-tree */
+.dom-tree {
+  padding: 0 0 0 1.5em;
+  color: #999;
+}
+.dom-tree code {
+  font-weight: bold;
+}
+.dom-tree ul ul ul  {
+  list-style: disc;
+}
+.dom-tree ul ul ul ul  {
+  list-style: circle;
+}
+.dom-tree ul ul ul ul ul {
+  list-style: square;
+}
+.dom-tree dl,
+.dom-tree dt,
+.dom-tree dd {
+  color: black;
+  margin: 0;
+  padding: 0;
+  display: inline; /* IE 5.x doesn't like this */
+}
+.dom-tree dd {
+  font-style: italic;
+}

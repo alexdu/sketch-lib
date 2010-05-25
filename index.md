@@ -1,10 +1,7 @@
-sketch-lib
-==========
-
-<style>
-body {margin-left: 5cm; margin-right: 3cm;}
-pre { background: #eef; color: #000; margin: 15px; padding: 15px;}
-</style>
+---
+layout: flex
+title: sketch-lib @ github
+---
 
 [overview]: basic-shapes-small.png
 [objects]: basic-shapes.png
@@ -17,11 +14,24 @@ pre { background: #eef; color: #000; margin: 15px; padding: 15px;}
 [coordsys]: coordsys.png
 [annotate]: annotate.png
 
-3D solids library for [sketch](http://www.frontiernet.net/~eugene.ressler/)
-
-Author:  Alex Dumitrache <alex@cimr.pub.ro>
+Author:  Alex Dumitrache, <alex@cimr.pub.ro>
 
 License: GPL
+
+<a name="download"> </a>
+
+Download
+--------
+
+You may download the library in [zip](http://github.com/alexdu/robot-sandbox/zipball/master) format.
+
+You may also clone the project with [Git](http://git-scm.com) by running:
+
+{% highlight sh %}
+$ git clone git://github.com/alexdu/robot-sandbox
+{% endhighlight %}
+ 
+
 
 ![Basic shapes overview][overview]
 
@@ -91,15 +101,13 @@ However, you may redefine `style` for each object.
 
 Another option is to show the objects in wireframe (without hidden line removal):
 
-  - `wireframe<>` 
-  
+ - `wireframe<>` 
+
 You may use this option:
 
-  - before including `lib/objects.sk` or at the beginning on the file
-  
-    In this case, the entire scene will be drawn in wireframe. 
-    
-  - For each object individually (more on this later).
+ - Before including `lib/objects.sk` or at the beginning on the file. In this case, the entire scene will be drawn in wireframe. 
+ 
+ - For each object individually (more on this later).
 
 ![][styles]
 
@@ -147,7 +155,7 @@ Customizing the objects
 If you want to customize the default options, or change the style 
 for a particular object, use the alternate form:
     
-  `{ input{lib/`*object_name*`} }`
+    { input{lib/`*object_name*`} }
 
 Examples:
 
@@ -176,35 +184,35 @@ Source: [sphere-custom.sk](sphere-custom.sk)
 
 The objects have the following options / parameters / tags:
 
-  - all solid objects (box, sphere, cylinder, cone, pyramid): 
+ - all solid objects (box, sphere, cylinder, cone, pyramid): 
   
-    - `def style [...]`
+   - `def style [...]`
     
-      `def style [cull=false, draw=red, fill=green, fill opacity=0.9]` 
+     `def style [cull=false, draw=red, fill=green, fill opacity=0.9]` 
     
-    - `def wireframe<>`
+   - `def wireframe<>`
   
-  - sphere:
+ - sphere:
     
-    - `def varsphere<>` - alternative appearance for the sphere (experimental)
+   - `def varsphere<>` - alternative appearance for the sphere (experimental)
     
-    - `def segments` - sphere resolution (default 20)
+   - `def segments` - sphere resolution (default 20)
 
-  - cylinder and cone:
+ - cylinder and cone:
     
-    - `def segments` - see *sphere*
+  - `def segments` - see *sphere*
     
-    - `def generatrix<>` - display the generatrix lines
+  - `def generatrix<>` - display the generatrix lines
     
        Note: `wireframe<>` implies `generatrix<>` (and also disables filling).
        
-  - pyramid
+ - pyramid
      
-    - `def n` - number of faces
+  - `def n` - number of faces
     
-  - coordsys 
+ - coordsys 
     
-    - `def rgb<>` - show a color coordinate system (<b><font color="red">X</font><font color="green">Y</font><font color="blue">Z</font></b>)
+  - `def rgb<>` - show a color coordinate system (<b><font color="red">X</font><font color="green">Y</font><font color="blue">Z</font></b>)
 
 Overriding default settings
 ---------------------------
@@ -296,33 +304,11 @@ or, with TikZ code for more flexibility:
  
     special|\draw [dashed, <->] #1 -- node[above, sloped]{$dx$} #2;|(0,0,2)(5,0,2)
 
-Complete example:
-
-    def blue<>
-    input{lib/defaults.sk}
-    input{lib/objects.sk}
-
-
-    put{translate([0,0,0.5])}{cylinder}
-    put{scale(2.5)}{coordsys}
-
-    put{translate([5,0,0])}
-    {
-        {pyramid}
-        put{scale(2.5)}{coordsys}
-    }
-
-    special|\draw [dashed, <->] #1 -- node[above, sloped]{$dx$} #2;|(0,0,2)(5,0,2)
-
-    global { 
-        language tikz 
-        camera rotate(0, (1,0,0)) * view((-1.5,2,1),(0,0,0),[0,0,1]) * rotate(180, (0,0,1))
-    }
-
 Be careful when typing TikZ code, since LaTeX error messages are not always intuitive.
 
 ![][annotate]
 
+Source: [annotate.sk](annotate.sk)
 Robot kinematics diagram
 ------------------------
 

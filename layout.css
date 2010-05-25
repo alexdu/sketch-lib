@@ -1,0 +1,74 @@
+/* Layout stylesheet */
+
+body {
+  font-size: 100.01%; /* [1] */
+}
+#col-a {
+  float: right;
+  width: 100%;
+}
+#col-a[id] { /* [2] */
+  margin-left: -1px;
+}
+#col-b {
+  float: left;
+  margin-left: -12em;
+  z-index: 10; /* [3] */
+}
+#col-b[id] { /* [2] */
+  margin-right: 1px;
+}
+#col-c {
+  float: right;
+  margin-right: -12em;
+  z-index: 11; /* [3] */
+}
+#col-c[id] { /* [2] */
+  margin-left: 1px;
+}
+.show-all #columns {
+  padding: 0 12em;
+}
+.hide-left #columns {
+  padding: 0 12em 0 0;
+}
+.hide-right #columns {
+  padding: 0 0 0 12em;
+}
+.cols-wrapper {
+  width: 100%;
+}
+.cols-wrapper[class] {
+  padding-bottom: 0.1px; /* [4] */
+}
+.float-wrapper {
+  float: left;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+.float-wrapper[class] { /* [2] */
+  margin-right: -1px;
+}
+.sidecol {
+  position: relative;
+  width: 12em;
+  overflow: hidden;
+}
+.box,
+.main-content {
+  margin: 0 1em;
+}
+.clear {
+  clear: both;
+}
+.none {
+  display: none;
+}
+
+/*
+  [1] Play nice with EMs in Opera 6 and IE Win.
+  [2] Support for Mozilla, but IE doesn't likes it.
+  [3] Z indices needed for link clickability in IE Mac and Opera 6.
+  [4] Mozilla needs a non zero value, seems to be a bug.
+*/
