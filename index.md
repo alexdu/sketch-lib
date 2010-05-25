@@ -62,8 +62,10 @@ Compiling the program
 ---------------------
 
 Save the program as `pyramid.sk` and compile it using `-T` option:
-    
-    sketch -T pyramid.sk -o pyramid.tex
+
+{% highlight sh %}
+$ sketch -T pyramid.sk -o pyramid.tex
+{% endhighlight %}
 
 Now you are ready process `pyramid.tex` with `pdflatex`.
 
@@ -71,7 +73,9 @@ For advanced options, see the [sketch manual](http://www.frontiernet.net/~eugene
 
 You may also use [`sk2pdf`](sk2pdf) or [`sk2png`](sk2png) to obtain the PDF or PNG directly from `.sk` source:
 
-    sk2pdf pyramid.sk
+{% highlight sh %}
+$ sk2pdf pyramid.sk
+{% endhighlight %}
 
 Constants
 ---------
