@@ -1,0 +1,50 @@
+def cylinder_generatrix put{rotate(90,[1,0,0]) then translate([0,0,-0.5])}
+{
+    repeat{segments, rotate(360/segments,[0,1,0])}
+        line[style,e_xtrastyle,nofill](1,0)(1,1)
+}
+
+def cylinder_interior
+<generatrix>
+{
+    put{rotate(90,[1,0,0]) then translate([0,0,-0.5]) then rotate(180/20, [0,0,1])}
+    {
+        def n 20   
+        sweep[style,e_xtrastyle,noline]{n<>, rotate(360/n,[0,1,0])}
+            line[style,e_xtrastyle,noline](1,0)(1,1)
+    }
+    {cylinder_generatrix}
+}
+<>
+{
+    put{rotate(90,[1,0,0]) then translate([0,0,-0.5])}
+    {
+        def n 20   
+        sweep[style,e_xtrastyle,noline]{n<>, rotate(360/n,[0,1,0])}
+            line[style,e_xtrastyle,noline](1,0)(1,1)
+    }
+}
+
+def cylinder_circles
+{
+    def n 50
+    sweep [style,e_xtrastyle] { 50, rotate(360 / 50, [0,0,1]) }
+            (1,0,0.5)
+    sweep [style,e_xtrastyle] { 50, rotate(360 / 50, [0,0,1]) }
+            (1,0,-0.5)
+}
+
+
+
+def cylinder 
+<wireframe>
+{
+    put {scale(0.995)}{cylinder_interior}
+    {cylinder_circles}    
+    {cylinder_generatrix}
+}
+<>
+{
+    put {scale(0.995)}{cylinder_interior}
+    {cylinder_circles}    
+}

@@ -1,0 +1,375 @@
+<h1>sketch-lib</h1>
+
+<p><style>
+body {margin-left: 5cm; margin-right: 3cm;}
+pre { background: #eef; color: #000; margin: 15px; padding: 15px;}
+</style></p>
+
+<p>3D solids library for <a href="http://www.frontiernet.net/~eugene.ressler/">sketch</a></p>
+
+<p>Author:  Alex Dumitrache <a href="&#x6D;&#x61;&#105;l&#116;&#x6F;:&#97;&#x6C;&#x65;&#120;&#64;&#x63;&#x69;&#x6D;&#x72;&#x2E;&#112;&#117;&#x62;&#x2E;&#114;&#x6F;">&#97;&#x6C;&#x65;&#120;&#64;&#x63;&#x69;&#x6D;&#x72;&#x2E;&#112;&#117;&#x62;&#x2E;&#114;&#x6F;</a></p>
+
+<p>License: GPL</p>
+
+<p><img src="basic-shapes-small.png" alt="Basic shapes overview" /></p>
+
+<h1>Usage</h1>
+
+<p>First, you have to copy <code>lib/</code> into your working folder.</p>
+
+<p>Then, include <code>lib/defaults.sk</code> and <code>lib/objects.sk</code> in your file, and use <code>language tikz</code> in global options section. See the examples below.</p>
+
+<h2>First program</h2>
+
+<pre><code>def blue&lt;&gt;
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+{pyramid}
+
+global {
+    language tikz
+    camera view((3,-2,1), (o), [Z])
+}
+</code></pre>
+
+<p><img src="simplest.png" alt="" /></p>
+
+<h2>Compiling the program</h2>
+
+<p>Save the program as <code>pyramid.sk</code> and compile it using <code>-T</code> option:</p>
+
+<pre><code>sketch -T pyramid.sk -o pyramid.tex
+</code></pre>
+
+<p>Now you are ready process <code>pyramid.tex</code> with <code>pdflatex</code>.</p>
+
+<p>For advanced options, see the <a href="http://www.frontiernet.net/~eugene.ressler/sketch.html">sketch manual</a>.</p>
+
+<p>You may also use <a href="sk2pdf"><code>sk2pdf</code></a> or <a href="sk2png"><code>sk2png</code></a> to obtain the PDF or PNG directly from <code>.sk</code> source:</p>
+
+<pre><code>sk2pdf pyramid.sk
+</code></pre>
+
+<h2>Constants</h2>
+
+<p>The library defines the following constants:</p>
+
+<ul>
+<li><code>(o) (x) (y) (z)</code> - (0,0,0), (1,0,0), (0,1,0) and (0,0,1) as points</li>
+<li><code>[O] [X] [Y] [Z]</code> - the same values, as vectors</li>
+</ul>
+
+<p>The unit vectors are useful for transformations:</p>
+
+<pre><code>rotate(30, [X])
+</code></pre>
+
+<h2>Styles and options</h2>
+
+<p>Before including the library, you will define a tag for selecting the style.
+Available styles: </p>
+
+<ul>
+<li><code>blue&lt;&gt;</code></li>
+<li><code>red&lt;&gt;</code></li>
+<li><code>gray&lt;&gt;</code> </li>
+</ul>
+
+<p>Caveat: you may only select the style by name at <em>before</em> including <code>lib/defaults.sk</code>.</p>
+
+<p>However, you may redefine <code>style</code> for each object.</p>
+
+<p>Another option is to show the objects in wireframe (without hidden line removal):</p>
+
+<ul>
+<li><code>wireframe&lt;&gt;</code> </li>
+</ul>
+
+<p>You may use this option:</p>
+
+<ul>
+<li><p>before including <code>lib/objects.sk</code> or at the beginning on the file</p>
+
+<p>In this case, the entire scene will be drawn in wireframe. </p></li>
+<li><p>For each object individually (more on this later).</p></li>
+</ul>
+
+<p><img src="styles.png" alt="" /></p>
+
+<p>Source: <a href="styles.sk">styles.sk</a></p>
+
+<p>In the figure:</p>
+
+<ul>
+<li>top row: default style (when you don't define any), <code>blue&lt;&gt;</code>, <code>red&lt;&gt;</code>, <code>gray&lt;&gt;</code></li>
+<li>bottom row: the same styles, with <code>wireframe&lt;&gt;</code> tag defined</li>
+</ul>
+
+<h2>Objects</h2>
+
+<p>Available objects:</p>
+
+<ul>
+<li><code>{box}</code></li>
+<li><code>{sphere}</code></li>
+<li><code>{cylinder}</code></li>
+<li><code>{cone}</code></li>
+<li><code>{pyramid}</code></li>
+<li><code>{coordsys}</code></li>
+</ul>
+
+<p><img src="basic-shapes.png" alt="" /></p>
+
+<p>Source: <a href="basic-shapes.sk">basic-shapes.sk</a></p>
+
+<h2>Using the objects</h2>
+
+<p>Every object is a drawable (see sketch manual).</p>
+
+<p>Simplest usage: just type the object name</p>
+
+<pre><code>{box}
+</code></pre>
+
+<p>For translating, rotating or scaling the object, use put:</p>
+
+<pre><code>put {translate([5,5,0]) * rotate(10, [X])}
+    {box}
+</code></pre>
+
+<h2>Customizing the objects</h2>
+
+<p>If you want to customize the default options, or change the style 
+for a particular object, use the alternate form:</p>
+
+<p><code>{ input{lib/</code><em>object_name</em><code>} }</code></p>
+
+<p>Examples:</p>
+
+<p>Triangular pyramid</p>
+
+<pre><code>{
+    def n 3
+    input{lib/pyramid}
+}
+</code></pre>
+
+<p><img src="pyramid3.png" alt="" /></p>
+
+<p>Source: <a href="pyramid3.sk">pyramid3.sk</a></p>
+
+<p>Alien sphere:</p>
+
+<pre><code>{
+    def style [cull=false, fill=green, fill opacity=0.9]
+    def segments 10
+    input{lib/sphere}
+}
+</code></pre>
+
+<p><img src="sphere-custom.png" alt="" /></p>
+
+<p>Source: <a href="sphere-custom.sk">sphere-custom.sk</a></p>
+
+<p>The objects have the following options / parameters / tags:</p>
+
+<ul>
+<li><p>all solid objects (box, sphere, cylinder, cone, pyramid): </p>
+
+<ul>
+<li><p><code>def style [...]</code></p>
+
+<p><code>def style [cull=false, draw=red, fill=green, fill opacity=0.9]</code> </p></li>
+<li><p><code>def wireframe&lt;&gt;</code></p></li>
+</ul></li>
+<li><p>sphere:</p>
+
+<ul>
+<li><p><code>def varsphere&lt;&gt;</code> - alternative appearance for the sphere (experimental)</p></li>
+<li><p><code>def segments</code> - sphere resolution (default 20)</p></li>
+</ul></li>
+<li><p>cylinder and cone:</p>
+
+<ul>
+<li><p><code>def segments</code> - see <em>sphere</em></p></li>
+<li><p><code>def generatrix&lt;&gt;</code> - display the generatrix lines</p>
+
+<p>Note: <code>wireframe&lt;&gt;</code> implies <code>generatrix&lt;&gt;</code> (and also disables filling).</p></li>
+</ul></li>
+<li><p>pyramid</p>
+
+<ul>
+<li><code>def n</code> - number of faces</li>
+</ul></li>
+<li><p>coordsys </p>
+
+<ul>
+<li><code>def rgb&lt;&gt;</code> - show a color coordinate system (<b><font color="red">X</font><font color="green">Y</font><font color="blue">Z</font></b>)</li>
+</ul></li>
+</ul>
+
+<h2>Overriding default settings</h2>
+
+<p>As you know, if you try to override a <code>def</code>, <code>sketch</code> will complain with an error message.</p>
+
+<pre><code>def foo 5
+def foo 7  % error!
+</code></pre>
+
+<p>However, you may override them in a child block.</p>
+
+<pre><code>def foo 5
+{
+    def foo 7 
+    % it works!
+}
+% here, foo is 5 again
+</code></pre>
+
+<p>Therefore, we'll do a similar trick to override the defaults for the entire scene:</p>
+
+<pre><code>input{lib/defaults.sk}
+
+{
+    def style [cull=false, style=thick, style=dotted, draw=black, fill=white, fill opacity=0.8]
+    def generatrix&lt;&gt;
+    def segments 40
+
+    input{lib/objects.sk}
+
+    put{scale(1/sqrt(2))}{pyramid}
+    put{translate([0,0,-0.5])}{box}
+
+    put{translate([-2,-2,0])}
+    {
+        {cone}
+        put{translate([0,0,-0.5])}{cylinder}
+    }
+}
+
+global {
+    language tikz
+    camera view((-3,2,1), (o), [Z]) * scale(3)
+}
+</code></pre>
+
+<p><img src="custom.png" alt="" /></p>
+
+<h2>Annotating objects</h2>
+
+<p>For placing labels on a coordinate system, you may use something like this:</p>
+
+<pre><code>def blue&lt;&gt;
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+put{translate([15,10,0])}
+{
+    {box}
+
+    put{scale(2)}
+    {
+        {coordsys}
+        special |\path #1 node[right] {$x$}
+                       #2 node[right] {$y$}
+                       #3 node[left]  {$z$};|(x)(y)(z)
+    }
+}
+
+global {
+    language tikz
+    camera view((1.5,-2,1), (o), [Z])
+}
+</code></pre>
+
+<p><img src="coordsys.png" alt="" /></p>
+
+<p>So, when you put <code>special|...tikz-statements...|(x)(y)(z)</code> inside a <code>put</code>, the points 
+<code>(x)</code>, <code>(y)</code> and <code>(z)</code> will be in the local reference frame of your object. </p>
+
+<p>You will have to adjust manually the position of the label nodes: <code>[right]</code>, <code>[left]</code>, <code>[above]</code> or <code>[below]</code>.</p>
+
+<p>Of course, you may also specify global coordinates. For this, put the annotation commands
+on the outermost level:</p>
+
+<pre><code>line [arrows=&lt;-&gt;, style=dashed] (0,0,2)(5,0,2)
+</code></pre>
+
+<p>or, with TikZ code for more flexibility:</p>
+
+<pre><code>special|\draw [dashed, &lt;-&gt;] #1 -- node[above, sloped]{$dx$} #2;|(0,0,2)(5,0,2)
+</code></pre>
+
+<p>Complete example:</p>
+
+<pre><code>def blue&lt;&gt;
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+
+put{translate([0,0,0.5])}{cylinder}
+put{scale(2.5)}{coordsys}
+
+put{translate([5,0,0])}
+{
+    {pyramid}
+    put{scale(2.5)}{coordsys}
+}
+
+special|\draw [dashed, &lt;-&gt;] #1 -- node[above, sloped]{$dx$} #2;|(0,0,2)(5,0,2)
+
+global { 
+    language tikz 
+    camera rotate(0, (1,0,0)) * view((-1.5,2,1),(0,0,0),[0,0,1]) * rotate(180, (0,0,1))
+}
+</code></pre>
+
+<p>Be careful when typing TikZ code, since LaTeX error messages are not always intuitive.</p>
+
+<p><img src="annotate.png" alt="" /></p>
+
+<h2>Robot kinematics diagram</h2>
+
+<p><img src="kinematics.png" alt="" /></p>
+
+<p>Source: <a href="kinematics.sk">kinematics.sk</a></p>
+
+<p>Each link <em>i</em> has position and orientation relative to its parent <em>(i-1)</em>.</p>
+
+<p>Try changing the joint angles (<code>J1</code>...<code>J6</code>) and redraw the diagram!</p>
+
+<h1>Bugs / Limitations</h1>
+
+<p>This library is in alpha stage, so there are many bugs and limitations.</p>
+
+<p>Here are some of them:</p>
+
+<ul>
+<li>It only works with PGF/TikZ. It was not tested with PSTricks, but it might work after some small tweaks.</li>
+<li>You cannot define custom styles with a name (you can only redefine <code>style</code>)</li>
+<li>It doesn't like dashed lines (it seems to work, but it looks bad)</li>
+<li>Sketch gives a lot of warnings about unused items and unknown options</li>
+<li>Uses some hacks for parametrized objects</li>
+</ul>
+
+<p>Please report all the bugs <a href="http://github.com/alexdu/sketch-lib/issues">here</a>. I will be happier if you would try to fix these bugs and send patches, though :)</p>
+
+<h1>Useful resources</h1>
+
+<p>For Sketch and TikZ:</p>
+
+<ul>
+<li><a href="http://www.fauskes.net/nb/introduction-to-sketch/">Introduction to Sketch for PGF/TikZ</a></li>
+<li><a href="http://www.frontiernet.net/~eugene.ressler/sketch.html">Sketch manual</a></li>
+<li><a href="http://www.texample.net/tikz/examples/tag/3d/">TikZ 3D examples</a></li>
+<li><a href="http://www.ctan.org/tex-archive/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf">PGF/TikZ manual</a></li>
+<li><a href="http://www.fauskes.net/code/blend2sketch/">Blender to Sketch exporter</a></li>
+</ul>
+
+<p>For 3D graphs in LaTeX you may want to check:</p>
+
+<ul>
+<li><a href="http://asymptote.sourceforge.net/">Asymptote</a></li>
+<li><a href="http://pyx.sourceforge.net/index.html">PyX</a></li>
+</ul>

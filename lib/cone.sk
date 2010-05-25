@@ -1,0 +1,47 @@
+def cone_generatrix put{rotate(90,[1,0,0])}
+{
+    repeat{segments, rotate(360/segments,[0,1,0])}
+        line[style,e_xtrastyle,nofill](1,0)(0,1)
+}
+
+def cone_interior
+<generatrix>
+{
+    put{rotate(90,[1,0,0]) then rotate(180/20, [0,0,1])}
+    {
+        def n 20   
+        sweep[style,e_xtrastyle,noline]{n<>, rotate(360/n,[0,1,0])}
+            line[style,e_xtrastyle,noline](1,0)(0,1)
+    }
+    {cone_generatrix}
+}
+<>
+{
+    put{rotate(90,[1,0,0])}
+    {
+        def n 20   
+        sweep[style,e_xtrastyle,noline]{n<>, rotate(360/n,[0,1,0])}
+            line[style,e_xtrastyle,noline](1,0)(0,1)
+    }
+}
+
+def cone_circle
+{
+    def n 50
+    sweep [style,e_xtrastyle] { 50, rotate(360 / 50, [0,0,1]) }
+            (1,0,0)
+}
+
+
+def cone 
+<wireframe>
+{
+    put {scale(0.995)}{cone_interior}
+    {cone_circle}    
+    {cone_generatrix}
+}
+<>
+{
+    put {scale(0.995)}{cone_interior}
+    {cone_circle}    
+}

@@ -1,0 +1,14 @@
+def blue<>
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+{
+    def n 3
+    input{lib/pyramid}
+}
+
+global {
+    language tikz
+    camera view((3,-2,1), (o), [Z])
+}
+

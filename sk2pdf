@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+name=${1%.*}
+tex=${1%.*}.tex
+pdf=${1%.*}.pdf
+
+sketch -Te $1 -o $tex
+pdflatex -interaction=nonstopmode $tex
+pdfcrop $pdf $pdf -margins "5 5 5 5"
+
+rm -v ${name}.aux
+rm -v ${name}.log
+rm -v ${name}.tex

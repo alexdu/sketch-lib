@@ -1,0 +1,15 @@
+def blue<>
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+{
+    def style [cull=false, fill=green, fill opacity=0.9]
+    def segments 10
+    input{lib/sphere}
+}
+
+global {
+    language tikz
+    camera view((3,-2,1), (o), [Z])
+}
+

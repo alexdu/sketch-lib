@@ -1,0 +1,9 @@
+def pyramid
+{
+    put {rotate(180/n, [0,0,1])}
+    {
+        sweep[style,e_xtrastyle]{n, rotate(360/n, [0,0,1])}
+            line[style,e_xtrastyle](1,0,0)(0,0,1)
+    }
+}
+

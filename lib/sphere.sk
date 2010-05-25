@@ -1,0 +1,23 @@
+def sphere
+<varsphere>
+{
+    def segu 50
+    def segv 50
+    
+    sweep [style,e_xtrastyle,noline] { segu, rotate(360 / segu, [0,0,1]) }
+        sweep { segv, rotate(180 / segv, [0,1,0]) } 
+        (0,0,-0.995)
+
+    repeat {segments/2, rotate(360 / segments, [0,0,1]) }
+        sweep [style,e_xtrastyle,nofill] { 50, rotate(360 / 50, [0,1,0]) } 
+        (0,0,-1)
+
+    sweep [style,e_xtrastyle] { 50, rotate(360 / 50, [0,0,1]) } 
+            (1,0,0)
+}
+<>
+{
+    sweep [style,e_xtrastyle] { segments, rotate(360 / segments, [0,0,1]) }
+      sweep { segments, rotate(180 / segments, [1,0,0]) } 
+        (0, 0, -1)
+}

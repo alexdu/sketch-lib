@@ -1,0 +1,7 @@
+input{extrastyle.sk}
+input{box.sk}
+input{sphere.sk}
+input{cylinder.sk}
+input{cone.sk}
+input{pyramid.sk}
+input{coordsys.sk}

@@ -1,0 +1,56 @@
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+{pyramid}
+
+put{translate([3,0,0])}
+{
+    def style [cull=false, draw=blue, fill=blue!20, fill opacity=0.8]
+    input{lib/pyramid}
+}
+
+put{translate([6,0,0])}
+{
+    def style [cull=false, draw=red, fill=red!20, fill opacity=0.8]
+    input{lib/pyramid}
+}
+
+put{translate([9,0,0])}
+{
+    def style [cull=false, draw=black, fill=white, fill opacity=0.8]
+    input{lib/pyramid}
+}
+
+
+put{translate([0,-5,0])}
+{
+    def wireframe<>
+    input{lib/pyramid}
+}
+
+put{translate([3,-5,0])}
+{
+    def wireframe<>
+    def style [cull=false, draw=blue, fill=blue!20, fill opacity=0.8]
+    input{lib/pyramid}
+}
+
+put{translate([6,-5,0])}
+{
+    def wireframe<>
+    def style [cull=false, draw=red, fill=red!20, fill opacity=0.8]
+    input{lib/pyramid}
+}
+
+put{translate([9,-5,0])}
+{
+    def wireframe<>
+    def style [cull=false, draw=black, fill=white, fill opacity=0.8]
+    input{lib/pyramid}
+}
+
+
+global {
+    language tikz
+    camera view((-0.2,-2,1), (o), [Z])
+}

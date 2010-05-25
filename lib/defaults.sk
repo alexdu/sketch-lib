@@ -1,0 +1,31 @@
+# defaults.sk
+#
+# Use this when you want to override default settings:
+# 
+# input{lib/defaults.sk}
+# {
+#    % override the settings here
+#    input{lib/objects.sk}
+#    
+#    % place your objects here
+# }
+## Arrow style
+special|[\tikzset{>=latex}]|[lay=under]
+
+## Line and fill styles
+def style
+<blue> [cull=false, draw=blue, fill=blue!20, fill opacity=0.8]
+<red> [cull=false, draw=red, fill=red!20, fill opacity=0.8]
+<gray> [cull=false, draw=black, fill=white, fill opacity=0.8]
+<> [cull=false]
+
+def noline [draw=none]
+def nofill [fill=none]
+
+def segments 20  % for cylinder, cone and sphere
+def n 4          % for pyramid
+
+def o (0,0,0) def x (1,0,0) def y (0,1,0) def z (0,0,1)
+def O [0,0,0] def X [1,0,0] def Y [0,1,0] def Z [0,0,1]
+
+
