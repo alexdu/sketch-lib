@@ -1,0 +1,21 @@
+def blue<>
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+
+put{translate([0,0,0.5])}{cylinder}
+put{scale(2.5)}{coordsys}
+
+put{translate([5,0,0])}
+{
+    {pyramid}
+    put{scale(2.5)}{coordsys}
+}
+
+special|\draw [dashed, <->] #1 -- node[above, sloped]{$dx$} #2;|(0,0,2)(5,0,2)
+
+global { 
+    language tikz 
+    camera rotate(0, (1,0,0)) * view((-1.5,2,1),(0,0,0),[0,0,1]) * rotate(180, (0,0,1))
+}
+

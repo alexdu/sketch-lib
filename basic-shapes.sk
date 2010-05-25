@@ -1,0 +1,159 @@
+## Examples of 3D objects from sketch-lib
+## 
+## Author : Alex Dumitrache <alex@cimr.pub.ro>
+## License: GPL
+
+
+## Predefined styles (you may uncomment one of them)
+def blue<>
+% def red<>
+% def gray<>
+
+## Include the shapes library
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+{cylinder}
+
+put{translate([5,0,0])}
+{   
+    def generatrix<>
+    input{lib/cylinder}
+    put{scale(2)}{coordsys}
+}
+
+put{translate([10,0,0])}
+{   
+    def segments 10
+    def wireframe<>
+    put{scale([1,1,2])}{input{lib/cylinder}}
+    put{scale(2.5)}{coordsys}
+}
+
+put {translate([15,0,0])}
+{
+    def segments 20
+    def generatrix<>
+    def style [cull=false, draw=red]
+    put{scale([1,1,2])}{input{lib/cylinder}}
+    put{scale(2.5)}{coordsys}
+}
+
+put{translate([0,5,0])}
+{pyramid}
+
+put{translate([5,5,0])}
+{
+    def n 3
+    input{lib/pyramid}
+    put{scale(2)}{coordsys}
+}
+
+put{translate([10,5,0])}
+{
+    def n 6
+    def wireframe<>
+    put{scale([1,1,2])}{input{lib/pyramid}}
+    put{scale([2,2,3])}{coordsys}
+}
+
+put{translate([15,5,0])}
+{
+    def n 4
+    def style [draw=green, style=thick]
+    put{scale([1,1,2])}{input{lib/pyramid}}
+    put{scale([2,2,3])}{coordsys}
+}
+
+put{translate([0,10,0])}
+{box}
+
+put{translate([5,10,0])}
+put{scale([1,1,2])}{box}
+
+put{translate([10,10,0])}
+{
+    def style[draw=red, style=thick]
+    def wireframe<>
+    input{lib/box}
+}
+
+put{translate([15,10,0])}
+{
+    def style[draw=black, style=thick]
+    input{lib/box}
+
+    def rgb<>
+    put{scale(2)}
+    {
+        input{lib/coordsys}
+        special |\path #1 node[right] {$x_{box}$}
+                       #2 node[right] {$y_{box}$}
+                       #3 node[left] {$z_{box}$};|(x)(y)(z)
+    }
+}
+
+
+put{translate([0,15,0])}
+{sphere}
+
+put{translate([5,15,0])}
+{
+    def segments 10
+    input{lib/sphere}
+    put{scale(2)}{coordsys}
+}
+
+put{translate([10,15,0])}
+{
+    def wireframe<>
+    def segments 10
+    input{lib/sphere}
+}
+
+put{translate([15,15,0])}
+{
+    def style [draw=none, fill=blue!20]
+    input{lib/sphere}
+}
+
+put{translate([0,20,0])}
+{
+    put{scale([1,1,2])}{cone}
+    put{scale([2,2,3])}
+    {   
+        {coordsys}
+        special |\path #1 node[right] {$x$}
+                       #2 node[right] {$y$}
+                       #3 node[above] {$z$};|(x)(y)(z)
+    }
+}
+
+put{translate([5,20,0])}
+{
+    def generatrix<>
+    put{scale([1,1,2])}{input{lib/cone}}
+}
+
+put{translate([10,20,0])}
+{
+    def wireframe<>
+    put{scale([1,1,2])}{input{lib/cone}}
+}
+
+put{translate([15,20,0])}
+{
+    def style [draw=orange, style=thick]
+    def generatrix<>
+    put{scale([1,1,2])}{input{lib/cone}}
+}
+
+line [arrows=<->, style=dashed] (5,0,1.5)(5,5,1.5)
+
+global 
+{ 
+    language tikz 
+    camera rotate(0, (1,0,0)) * view((-2.7,2,1.5),(0,0,0),[0,0,1]) * rotate(180, (0,0,1)) * scale(0.75)
+}
+
+

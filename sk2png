@@ -1,0 +1,20 @@
+#!/bin/bash
+
+name=${1%.*}
+tex=${1%.*}.tex
+pdf=${1%.*}.pdf
+ppm=${1%.*}-1.ppm
+png=${1%.*}.png
+
+sketch -Te $1 -o $tex
+pdflatex -interaction=batchmode $tex
+pdfcrop $pdf $pdf -margins "5 5 5 5"
+pdftoppm $pdf $name
+convert $ppm $png
+
+echo "Removing temporary files..."
+rm -v $ppm
+rm -v ${name}.aux
+rm -v ${name}.log
+rm -v ${name}.tex
+

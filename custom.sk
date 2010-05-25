@@ -1,0 +1,24 @@
+input{lib/defaults.sk}
+
+{
+    def style [cull=false, style=thick, style=dotted, draw=black, fill=white, fill opacity=0.8]
+    def generatrix<>
+    def segments 40
+
+    input{lib/objects.sk}
+
+    put{scale(1/sqrt(2))}{pyramid}
+    put{translate([0,0,-0.5])}{box}
+
+    put{translate([-2,-2,0])}
+    {
+        {cone}
+        put{translate([0,0,-0.5])}{cylinder}
+    }
+}
+
+global {
+    language tikz
+    camera view((-3,2,1), (o), [Z]) * scale(3)
+}
+

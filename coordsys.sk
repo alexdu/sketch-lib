@@ -1,0 +1,22 @@
+def blue<>
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+put{translate([15,10,0])}
+{
+    {box}
+
+    put{scale(2)}
+    {
+        {coordsys}
+        special |\path #1 node[right] {$x$}
+                       #2 node[right] {$y$}
+                       #3 node[left]  {$z$};|(x)(y)(z)
+    }
+}
+
+global {
+    language tikz
+    camera view((1.5,-2,1), (o), [Z])
+}
+
