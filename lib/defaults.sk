@@ -24,6 +24,7 @@ def nofill [fill=none]
 
 def segments 20  % for cylinder, cone and sphere
 def n 4          % for pyramid
+def interior_scale 0.995
 
 def o (0,0,0) def x (1,0,0) def y (0,1,0) def z (0,0,1)
 def O [0,0,0] def X [1,0,0] def Y [0,1,0] def Z [0,0,1]

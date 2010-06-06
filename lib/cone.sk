@@ -36,12 +36,12 @@ def cone_circle
 def cone 
 <wireframe>
 {
-    put {scale(0.995)}{cone_interior}
+    put {scale(interior_scale)}{cone_interior}
     {cone_circle}    
     {cone_generatrix}
 }
 <>
 {
-    put {scale(0.995)}{cone_interior}
+    put {scale(interior_scale)}{cone_interior}
     {cone_circle}    
 }

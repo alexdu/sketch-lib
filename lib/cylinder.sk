@@ -39,12 +39,21 @@ def cylinder_circles
 def cylinder 
 <wireframe>
 {
-    put {scale(0.995)}{cylinder_interior}
+    put {scale(interior_scale)}{cylinder_interior}
     {cylinder_circles}    
     {cylinder_generatrix}
 }
+<varcylinder>
+{
+    def n 20
+    special|\maxlen = 0;|
+    repeat{n, rotate(360/n,[0,1,0])}
+        special|(veclen($#1 - #2$) > \maxlen) * ; \maxlen = veclen($#1 - #2$)|(1,0)(0,0)
+}
 <>
 {
-    put {scale(0.995)}{cylinder_interior}
+    put {scale(interior_scale)}{cylinder_interior}
     {cylinder_circles}    
 }
+
+
