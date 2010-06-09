@@ -28,12 +28,12 @@ License: GPL
 Download
 ========
 
-You may download the library in [zip](http://github.com/alexdu/robot-sandbox/zipball/master) format.
+You may download the library in [zip](http://github.com/alexdu/sketch-lib/zipball/master) format.
 
 You may also clone the project with [Git](http://git-scm.com) by running:
 
 {% highlight sh %}
-$ git clone git://github.com/alexdu/robot-sandbox
+$ git clone git://github.com/alexdu/sketch-lib
 {% endhighlight %}
 
 
@@ -211,6 +211,8 @@ The objects have the following options / parameters / tags:
   - `def generatrix<>` - display the generatrix lines
     
        Note: `wireframe<>` implies `generatrix<>` (and also disables filling).
+
+  - `def interior_scale 0.995` - It is useful for reducing artifacts created by thick lines. The interior of the cylinder is drawn a bit smaller than the wireframe. If you have thick lines, use a smaller value. Use 1 to disable this scaling trick.
        
  - pyramid
      
