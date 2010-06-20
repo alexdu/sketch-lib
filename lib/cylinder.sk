@@ -13,7 +13,7 @@ def cylinder_interior
         sweep[style,e_xtrastyle,noline]{n<>, rotate(360/n,[0,1,0])}
             line[style,e_xtrastyle,noline](1,0)(1,1)
     }
-    {cylinder_generatrix}
+    put{scale(1/interior_scale)}{cylinder_generatrix}
 }
 <>
 {
